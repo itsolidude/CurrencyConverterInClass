@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
-
 /*
     TODOs:
     In groups of 4, complete the following tasks, 1 for each team member:
@@ -25,26 +24,23 @@ import android.util.Log;
 
 
 
-
 public class MainActivity extends AppCompatActivity {
     static private final Float CONVERSION_RATE = 0.80F;
-    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate started");
         setContentView(R.layout.activity_main);
 
+        Log.i("MainActivity", "onCreate method started");
+
         Button buttonConvert = findViewById(R.id.convertButton);
-        buttonConvert.setOnClickListener(view -> {
-            convertCurrency(view);
-        });
-        Log.i(TAG, "onCreate finished");
+
+        buttonConvert.setOnClickListener(this::convertCurrency);
     }
 
     public void convertCurrency(View view) {
-        Log.i(TAG, "convertCurrency started");
+        Log.i("MainActivity", "convertCurrency method started");
 
         EditText inputView = findViewById(R.id.entryId);
         String inputAmount = inputView.getText().toString();
@@ -53,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         if (!inputAmount.isEmpty()) {
             Float inputAmountDecimal = Float.valueOf(inputAmount);
             Float resultFloat = inputAmountDecimal * CONVERSION_RATE;
-            resultView.setText(resultFloat + " Euros");
+            resultView.setText(String.format(getString(R.string.result_text), resultFloat));
         }
 
-        Log.i(TAG, "convertCurrency finished");
+        Log.i("MainActivity", "convertCurrency method finished");
     }
 }
