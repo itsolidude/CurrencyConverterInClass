@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Currency Converter</string>
     <string name="enter_dollars">Enter Dollars</string>
+    //updated
     <string name="result">result</string>
     <string name="convert_button">Convert</string>
     <string name="result_euros">%1$.2f Euros</string>
+
 
 </resources>
