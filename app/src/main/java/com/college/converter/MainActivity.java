@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+//import android.widget.Button;
+//import android.widget.EditText;
+//import android.widget.TextView;
+import com.college.converter.databinding.ActivityMainBinding; // Import generated binding class
 
 /*
     TODOs:
@@ -23,33 +24,37 @@ import android.widget.TextView;
 */
 
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding; // Declare a binding variable
     static private final Float CONVERSION_RATE = 0.80F;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater()); // Inflate the binding
+        setContentView(binding.getRoot()); // Set content view to the root of the binding
 
-        Button buttonConvert = findViewById(R.id.convertButton);
 
-        buttonConvert.setOnClickListener( view ->  {
+//        Button buttonConvert = findViewById(R.id.convertButton); // don't need findViewById anymore
+
+        binding.convertButton.setOnClickListener( view ->  {
             convertCurrency(view);
         } );
     }
 
     public void convertCurrency(View view) {
 
-        EditText inputView = findViewById(R.id.entryId);
+//        EditText inputView = findViewById(R.id.entryId); // no need of findViewById
 
-        String inputAmount = inputView.getText().toString();
+        String inputAmount = binding.entryId.getText().toString(); // Use binding to access views
 
-        TextView resultView = findViewById(R.id.resultId);
+//        TextView resultView = findViewById(R.id.resultId); // no need of findViewById
 
         if (!inputAmount.isEmpty()) {
             Float inputAmountDecimal = Float.valueOf(inputAmount);
 
             Float resultFloat = inputAmountDecimal * CONVERSION_RATE;
 
-            resultView.setText( resultFloat + " Euros" );
+            binding.resultId.setText( resultFloat + " Euros" ); // Use binding to set text
         }
     }
 }
